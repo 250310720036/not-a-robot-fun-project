@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Are You A Robot?</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="captcha-card">
+
+        <div class="robot">🤖</div>
+
+        <h1>Are You A Robot?</h1>
+
+        <p id="question">Loading impossible question...</p>
+
+        <input
+            type="text"
+            id="answer"
+            placeholder="Enter your very human answer..."
+        >
+
+        <button id="verifyBtn">Verify Humanity 🧠</button>
+
+        <p id="message"></p>
+
+        <div class="attempt-box">
+            Suspicion Level: <span id="attempts">0</span>% 🤨
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
