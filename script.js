@@ -1,38 +1,54 @@
 const questions = [
-    "If tomatoes are fruits, is ketchup a smoothie? 🍅",
-    "What colour is Monday? 🤨",
-    "If you clean a vacuum cleaner, are you the vacuum cleaner? 😭",
-    "Why is the word 'short' longer than 'long'? 🧠",
-    "What does silence sound like? 👂",
-    "How many thoughts are currently buffering in your brain? 💀",
-    "If nothing is impossible, is it possible for nothing to be impossible? 🤯"
+    "If tomatoes are fruits, is ketchup a smoothie? 🍅🥤",
+    "What colour is Monday? Choose wisely. 🤨",
+    "Do fish know they're wet? 🐟💀",
+    "If you punch yourself and it hurts, are you strong or weak? 👊😭",
+    "If money doesn't grow on trees, why do banks have branches? 💸🌳",
+    "If you're waiting for the waiter, who's the real waiter? 🍽️👀",
+    "If two vegans fight, is it still called beef? 🌱🥊",
+    "If debugging removes bugs, who keeps adding them? 🐛🤨",
+    "If Ctrl + Z worked in real life, what are you undoing first? ⌨️💀",
+    "Are you solving this CAPTCHA... or is it testing your sanity? 🤖😭"
 ];
+
+const messages = [
+    "🤨 Very suspicious answer.",
+    "🤖 That's exactly what a robot would say.",
+    "🚨 HUMANITY NOT DETECTED.",
+    "💀 Bro failed a CAPTCHA.",
+    "🧠 Your brain.exe has stopped working.",
+    "📡 Contacting robot headquarters...",
+    "😂 Nice try, toaster.",
+    "🚫 Human verification failed successfully."
+];
+
 const question = document.getElementById("question");
-
 const answer = document.getElementById("answer");
-
 const verifyBtn = document.getElementById("verifyBtn");
-
 const message = document.getElementById("message");
-
 const attempts = document.getElementById("attempts");
 
 let suspicion = 0;
+let currentQuestion = -1;
 
 function newQuestion() {
 
-    const randomQuestion =
-        questions[Math.floor(Math.random() * questions.length)];
+    let randomIndex;
 
-    question.innerText = randomQuestion;
+    do {
+        randomIndex = Math.floor(Math.random() * questions.length);
+    } while (randomIndex === currentQuestion);
 
+    currentQuestion = randomIndex;
+
+    question.innerText = questions[randomIndex];
 }
 
 verifyBtn.addEventListener("click", function () {
 
     if (answer.value.trim() === "") {
 
-        message.innerText = "🤨 Robots usually forget to type.";
+        message.innerText = "🤨 Type something, human.";
 
         return;
     }
@@ -52,31 +68,23 @@ verifyBtn.addEventListener("click", function () {
 
     answer.value = "";
 
-    setTimeout(newQuestion, 700);
+    newQuestion();
 
     if (suspicion === 100) {
 
-        setTimeout(function () {
+        message.innerText =
+            "🚨 CONFIRMED ROBOT. RETURN TO THE FACTORY 🤖";
 
-            message.innerText =
-                "🚨 CONFIRMED ROBOT. PLEASE RETURN TO THE FACTORY 🤖";
+        verifyBtn.innerText = "ROBOT DETECTED 🚨";
 
-            verifyBtn.innerText = "ROBOT DETECTED 🚨";
-
-            verifyBtn.disabled = true;
-
-        }, 800);
-
+        verifyBtn.disabled = true;
     }
-
 });
 
 answer.addEventListener("keypress", function (event) {
 
     if (event.key === "Enter") {
-
         verifyBtn.click();
-
     }
 
 });
