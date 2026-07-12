@@ -1,26 +1,12 @@
 const questions = [
     "If tomatoes are fruits, is ketchup a smoothie? 🍅",
     "What colour is Monday? 🤨",
-    "How many WiFi signals does a potato have? 🥔",
     "If you clean a vacuum cleaner, are you the vacuum cleaner? 😭",
     "Why is the word 'short' longer than 'long'? 🧠",
     "What does silence sound like? 👂",
-    "If humans evolved from monkeys, why do exams exist? 🐒",
     "How many thoughts are currently buffering in your brain? 💀",
     "If nothing is impossible, is it possible for nothing to be impossible? 🤯"
 ];
-
-const messages = [
-    "🤨 Very suspicious answer.",
-    "🤖 That's exactly what a robot would say.",
-    "🚨 HUMANITY NOT DETECTED.",
-    "💀 Bro failed a CAPTCHA.",
-    "🧠 Your brain.exe has stopped working.",
-    "📡 Contacting robot headquarters...",
-    "😂 Nice try, toaster.",
-    "🚫 Human verification failed successfully."
-];
-
 const question = document.getElementById("question");
 
 const answer = document.getElementById("answer");
