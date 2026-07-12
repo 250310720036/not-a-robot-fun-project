@@ -29,31 +29,20 @@ const message = document.getElementById("message");
 const attempts = document.getElementById("attempts");
 
 let suspicion = 0;
-let currentQuestion = -1;
+let currentQuestion = 0;
 
-function newQuestion() {
-
-    let randomIndex;
-
-    do {
-        randomIndex = Math.floor(Math.random() * questions.length);
-    } while (randomIndex === currentQuestion);
-
-    currentQuestion = randomIndex;
-
-    question.innerText = questions[randomIndex];
+function showQuestion() {
+    question.innerText = questions[currentQuestion];
 }
 
 verifyBtn.addEventListener("click", function () {
 
     if (answer.value.trim() === "") {
-
         message.innerText = "🤨 Type something, human.";
-
         return;
     }
 
-    suspicion += Math.floor(Math.random() * 15) + 10;
+    suspicion += 10;
 
     if (suspicion > 100) {
         suspicion = 100;
@@ -68,25 +57,27 @@ verifyBtn.addEventListener("click", function () {
 
     answer.value = "";
 
-    newQuestion();
+    currentQuestion++;
+
+    if (currentQuestion >= questions.length) {
+        currentQuestion = 0;
+    }
+
+    showQuestion();
 
     if (suspicion === 100) {
-
         message.innerText =
             "🚨 CONFIRMED ROBOT. RETURN TO THE FACTORY 🤖";
 
         verifyBtn.innerText = "ROBOT DETECTED 🚨";
-
         verifyBtn.disabled = true;
     }
 });
 
-answer.addEventListener("keypress", function (event) {
-
+answer.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
         verifyBtn.click();
     }
-
 });
 
-newQuestion();
+showQuestion();
